@@ -21,7 +21,7 @@ VCR.configure do |c|
 
   c.around_http_request do |request|
     cassette = request.uri.split('://').last.split('?').first
-    VCR.use_cassette(cassette, record: :new_episodes, match_requests_on: %i(method uri body), &request)
+    VCR.use_cassette(cassette, record: :new_episodes, match_requests_on: %i(method uri), &request)
   end
 end
 
