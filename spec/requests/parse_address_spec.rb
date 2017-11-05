@@ -3,13 +3,6 @@ require 'spec_helper'
 describe 'Parse Address Api' do
   subject(:response) { last_response }
   subject(:response_json) { JSON.parse(response.body, symbolize_names: true) }
-  # context ''
-  # it 'works' do
-  #   get '/parse_address'
-  #   expect(response.status).to be_equal(200)
-  # end
-
-### ### ###
 
   context 'good address' do
     let(:address) { 'Berlin Julie-Wolfthorn-Str. 1' }
