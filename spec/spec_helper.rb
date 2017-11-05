@@ -102,3 +102,15 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+VCR.configure do |c|
+  c.configure_rspec_metadata!
+  c.cassette_library_dir = 'fixtures/vcr_cassettes'
+  c.hook_into :webmock
+
+  c.around_http_request do |request|
+    cassette = request.uri.split('://').last.split('?').first
+    VCR.use_cassette(cassette, record: :new_episodes, match_requests_on: %i(method uri body), &request)
+  end
+end
+
