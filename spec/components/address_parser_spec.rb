@@ -78,4 +78,17 @@ describe AddressParser do
 
     include_examples 'deal with bad address'
   end
+
+  # Checking if all addresses from the list are searchable
+  context 'good addresses list' do
+    addresses_path = File.dirname(__FILE__) + '/../lib/addresses.txt'
+    File.open(addresses_path).each_line do |address|
+      context "address: #{address}" do
+        let(:address) { address }
+        it 'should be searchable' do
+          expect(subject.successful?).to be_truthy
+        end
+      end
+    end
+  end
 end
