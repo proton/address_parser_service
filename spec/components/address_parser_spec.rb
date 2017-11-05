@@ -7,19 +7,9 @@ describe AddressParser do
     parser
   end
 
-  context 'good address' do
-    let(:address) { 'Berlin Julie-Wolfthorn-Str. 1' }
-
+  shared_examples 'deal with good address' do
     describe '#result' do
       it 'returns correct object' do
-        result = {
-          street_number: '1',
-          street: 'Julie-Wolfthorn-Straße',
-          district: 'Mitte',
-          city: 'Berlin',
-          state: 'Berlin',
-          country: 'Germany'
-        }
         expect(subject.result).to eq(result)
       end
     end
@@ -37,14 +27,11 @@ describe AddressParser do
     end
   end
 
-  context 'bad address' do
-    let(:address) { 'fsdfdlfsdfsd' }
-    let(:error) { 'not found' }
+  shared_examples 'deal with bad address' do
+    let(:result) { { error: error } }
 
     describe '#result' do
       it 'returns object with error' do
-        result = { error: error }
-
         expect(subject.result).to eq(result)
       end
     end
@@ -62,28 +49,33 @@ describe AddressParser do
     end
   end
 
+  context 'good address' do
+    let(:address) { 'Berlin Julie-Wolfthorn-Str. 1' }
+    let(:result) do
+      {
+        street_number: '1',
+        street: 'Julie-Wolfthorn-Straße',
+        district: 'Mitte',
+        city: 'Berlin',
+        state: 'Berlin',
+        country: 'Germany'
+      }
+    end
+
+    include_examples 'deal with good address'
+  end
+
+  context 'bad address' do
+    let(:address) { 'fsdfdlfsdfsd' }
+    let(:error) { 'not found' }
+
+    include_examples 'deal with bad address'
+  end
+
   context 'no address' do
     let(:address) { nil }
     let(:error) { 'no address' }
 
-    describe '#result' do
-      it 'returns object with error' do
-        result = { error: error }
-
-        expect(subject.result).to eq(result)
-      end
-    end
-
-    describe '#successful?' do
-      it 'should be false' do
-        expect(subject.successful?).to be_falsey
-      end
-    end
-
-    describe '#error' do
-      it 'contains error' do
-        expect(subject.error).to eq(error)
-      end
-    end
+    include_examples 'deal with bad address'
   end
 end
