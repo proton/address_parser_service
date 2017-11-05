@@ -11,3 +11,7 @@ group :test do
   gem 'vcr'
   gem 'database_cleaner'
 end
+
+group :production do
+  gem 'puma'
+end

@@ -11,6 +11,7 @@ GEM
     hashdiff (0.3.7)
     mustermann (1.0.1)
     public_suffix (3.0.0)
+    puma (3.10.0)
     rack (2.0.3)
     rack-protection (2.0.0)
       rack
@@ -49,6 +50,7 @@ PLATFORMS
 DEPENDENCIES
   database_cleaner
   geocoder
+  puma
   rack-test
   redis
   rspec
