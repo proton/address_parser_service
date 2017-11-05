@@ -15,7 +15,7 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
 ENV['RACK_ENV'] = 'test'
-require File.expand_path '../../app.rb', __FILE__
+require File.expand_path '../../env.rb', __FILE__
 
 RSpec.configure do |config|
   config.include Rack::Test::Methods

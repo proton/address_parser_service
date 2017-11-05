@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'app'
 
 describe 'Parse Address Api' do
   subject(:response) { last_response }
