@@ -15,10 +15,6 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
 ENV['RACK_ENV'] = 'test'
-
-Bundler.require(:default)
-Bundler.require(Sinatra::Base.environment)
-
 require File.expand_path '../../app.rb', __FILE__
 
 RSpec.configure do |config|
