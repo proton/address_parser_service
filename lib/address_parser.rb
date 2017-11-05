@@ -1,5 +1,3 @@
-require 'geocoder'
-
 class AddressParser
   attr_reader :address, :result, :error, :geo
 

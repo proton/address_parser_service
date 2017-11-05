@@ -1,5 +1,8 @@
 require 'app'
 
+include Rack::Test::Methods
+def app() App end
+
 describe 'Parse Address Api' do
   subject(:response) { last_response }
   subject(:response_json) { JSON.parse(response.body, symbolize_names: true) }
